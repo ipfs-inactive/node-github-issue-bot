@@ -1,0 +1,36 @@
+{
+  "name": "node-github-issue-bot",
+  "version": "1.0.0",
+  "description": "Automatically schedule and create GitHub issues",
+  "main": "index.js",
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "generate-hackmd-links": "^1.2.0",
+    "moment": "^2.17.1",
+    "node-cron": "^1.1.2",
+    "octokat": "^0.6.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ipfs/node-github-issue-bot.git"
+  },
+  "keywords": [
+    "github",
+    "issues",
+    "node",
+    "cron",
+    "automatic",
+    "create",
+    "ipfs"
+  ],
+  "author": "Richard Littauer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ipfs/node-github-issue-bot/issues"
+  },
+  "homepage": "https://github.com/ipfs/node-github-issue-bot#readme"
+}
