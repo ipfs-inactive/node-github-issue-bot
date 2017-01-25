@@ -14,10 +14,4 @@ Endeavour      | Lead            | Time (PST - UTC - CET) | Pad
 All Hands Call | @dignifiedquire   | 9:00 **17:00** 18:00  | [agenda and notes](HACKMD)
 Sync Between Sprints      | @flyingzumwalt    | 10:00 **18:00** 19:00 | [agenda and notes](HACKMD)
 
-### Tuesday-Friday Standup Calls
-
-Endeavour      | Lead            | Time (PST - UTC - CET) | Pad
-:------------: | :-------------: | :--------------------: | :----:
-Standup Call: data.gov (aka 300 TB Challenge)       | @flyingzumwalt   | 10:00 **18:00** 19:00| [waffle board](https://waffle.io/ipfs/archives)
-
 Please add any agenda items you have to the pad before the project-specific sprint call starts.
