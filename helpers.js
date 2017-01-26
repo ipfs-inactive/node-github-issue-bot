@@ -1,3 +1,5 @@
+const moment = require('moment')
+
 function getTitleFormat (start, end) {
   var startMonth = moment(moment().day(start)).format("MMM")
   var endMonth = moment(moment().day(end)).format("MMM")
