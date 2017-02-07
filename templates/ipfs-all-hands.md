@@ -15,3 +15,5 @@ All Hands Call | LEAD   | 9:00 **17:00** 18:00  | [agenda and notes](HACKMD)
 Sync Between Sprints      | TBD    | 10:00 **18:00** 19:00 | [agenda and notes](HACKMD)
 
 Please add any agenda items you have to the pad before the project-specific sprint call starts.
+
+The sprints for the week are available to view in the [WaffleBoard](http://waffle.io/ipfs/roadmaps) for [ipfs/roadmaps](https://github.com/ipfs/roadmaps).
