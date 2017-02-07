@@ -9,10 +9,10 @@ Zoom and Stream links will be updated directly before the calls. Links to them w
 
 ### Monday
 
-Endeavour      | Lead            | Time (PST - UTC - CET) | Pad
-:------------: | :-------------: | :--------------------: | :----:
-All Hands Call | LEAD   | 9:00 **17:00** 18:00  | [agenda and notes](HACKMD)
-Sync Between Sprints      | TBD    | 10:00 **18:00** 19:00 | [agenda and notes](HACKMD)
+Endeavour      | Lead            | Notetaker | Time (PST - UTC - CET) | Pad
+:------------: | :-------------: | :-------: | :--------------------: | :----:
+All Hands Call | LEAD   | NOTER | 9:00 **17:00** 18:00  | [agenda and notes](HACKMD)
+Sync Between Sprints      | TBD    | TBD | 10:00 **18:00** 19:00 | [agenda and notes](HACKMD)
 
 Please add any agenda items you have to the pad before the project-specific sprint call starts.
 

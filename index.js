@@ -15,7 +15,7 @@ const Promise = require('bluebird')
 const readFile = Promise.promisify(require('fs').readFile)
 const atob = require('atob')
 
-function getNewLead (repo) {
+function getNewRoles (repo) {
   return gh.repos(repo).issues.fetch({labels: 'calls'})
   .then((res) => {
     var issue = res.items[0].body
@@ -30,12 +30,18 @@ function getNewLead (repo) {
       // Could be optimized to only look in that section
       var facilitators = readme.substring(readme.lastIndexOf('Facilitators and Notetakers')).match(/\n- @.*/g)
       facilitators = facilitators.map((item) => '@' + item.split('@')[1].toLowerCase())
+      var numFacilitators = facilitators.length
       if (facilitators.indexOf(lead) !== -1) {
-        var nextLeadIndex = facilitators.indexOf(lead) + 1
-        return (nextLeadIndex === facilitators.length) ? facilitators[0] : facilitators[nextLeadIndex]
+        return {
+          lead: facilitators[(facilitators.indexOf(lead) + 1) % numFacilitators],
+          notetaker: facilitators[(facilitators.indexOf(lead) + 2) % numFacilitators]
+        }
       } else {
         // If you mess up, blame the @ipfs-helper
-        return '@ipfs-helper'
+        return {
+          lead: '@ipfs-helper',
+          notetaker: 'TBD'
+        }
       }
     })
   })
@@ -45,9 +51,10 @@ module.exports = function createIssue (issue) {
   readFile(path.join(__dirname, issue.template), 'utf8').then((data) => {
     return hackmd(data)
   }).then((data) => {
-    return getNewLead(issue.repo).then((lead) => {
-      data = data.replace(/LEAD/, lead)
-      return gh.repos(issue.repo).issues.create({title: issue.title, body: data, labels: issue.labels})
+    return getNewRoles(issue.repo).then((roles) => {
+      data = data.replace(/LEAD/, roles.lead)
+      data = data.replace(/NOTER/, roles.notetaker)
+      gh.repos(issue.repo).issues.create({title: issue.title, body: data, labels: issue.labels})
     })
   }).then((res) => res)
 }
