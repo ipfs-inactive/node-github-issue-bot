@@ -1,6 +1,6 @@
 {
   "name": "node-github-issue-bot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automatically schedule and create GitHub issues",
   "main": "index.js",
   "dependencies": {
@@ -32,5 +32,9 @@
   "bugs": {
     "url": "https://github.com/ipfs/node-github-issue-bot/issues"
   },
-  "homepage": "https://github.com/ipfs/node-github-issue-bot#readme"
+  "homepage": "https://github.com/ipfs/node-github-issue-bot#readme",
+  "coordinates": [
+    45.522199,
+    -73.5641471
+  ]
 }
