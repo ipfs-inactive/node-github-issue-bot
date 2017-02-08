@@ -15,15 +15,9 @@ const Promise = require('bluebird')
 const readFile = Promise.promisify(require('fs').readFile)
 const atob = require('atob')
 
-function getNewRoles (repo) {
-  return gh.repos(repo).issues.fetch({labels: 'calls'})
-  .then((res) => {
-    var issue = res.items[0].body
-    var lastLead = issue.substring(issue.lastIndexOf('All Hands Call')).match(/@[a-zA-Z0-9]*/g)[0]
-    return lastLead.toLowerCase()
-  }).then((lead) => {
-    // This gets the list from the README of the repo, from the section `Facilitators and Notetakers`
-    return gh.repos(repo).readme.fetch()
+// This gets the list from the README of the repo, from the section `Facilitators and Notetakers`
+function getNewRoles (repo, lastLead) {
+  return gh.repos(repo).readme.fetch()
     .then((res) => {
       var readme = atob(res.content)
       // Dumbly read from the Header to the end of the document, looking for names per line
@@ -31,10 +25,10 @@ function getNewRoles (repo) {
       var facilitators = readme.substring(readme.lastIndexOf('Facilitators and Notetakers')).match(/\n- @.*/g)
       facilitators = facilitators.map((item) => '@' + item.split('@')[1].toLowerCase())
       var numFacilitators = facilitators.length
-      if (facilitators.indexOf(lead) !== -1) {
+      if (facilitators.indexOf(lastLead) !== -1) {
         return {
-          lead: facilitators[(facilitators.indexOf(lead) + 1) % numFacilitators],
-          notetaker: facilitators[(facilitators.indexOf(lead) + 2) % numFacilitators]
+          lead: facilitators[(facilitators.indexOf(lastLead) + 1) % numFacilitators],
+          notetaker: facilitators[(facilitators.indexOf(lastLead) + 2) % numFacilitators]
         }
       } else {
         // If you mess up, blame the @ipfs-helper
@@ -44,6 +38,16 @@ function getNewRoles (repo) {
         }
       }
     })
+}
+
+function getLastLead (repo) {
+  return gh.repos(repo).issues.fetch({labels: 'calls'})
+  .then((res) => {
+    var issue = res.items[0].body
+    var lastLead = issue.substring(issue.lastIndexOf('All Hands Call')).match(/@[a-zA-Z0-9]*/g)[0]
+    return lastLead.toLowerCase()
+  }).then((lastLead) => {
+    return getNewRoles(repo, lastLead)
   })
 }
 
@@ -51,7 +55,7 @@ module.exports = function createIssue (issue) {
   readFile(path.join(__dirname, issue.template), 'utf8').then((data) => {
     return hackmd(data)
   }).then((data) => {
-    return getNewRoles(issue.repo).then((roles) => {
+    return getLastLead(issue.repo).then((roles) => {
       data = data.replace(/LEAD/, roles.lead)
       data = data.replace(/NOTER/, roles.notetaker)
       gh.repos(issue.repo).issues.create({title: issue.title, body: data, labels: issue.labels})
