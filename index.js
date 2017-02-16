@@ -41,7 +41,7 @@ function getNewRoles (repo, lastLead) {
 }
 
 function getLastLead (repo) {
-  return gh.repos(repo).issues.fetch({labels: 'calls'})
+  return gh.repos(repo).issues.fetch({labels: 'calls', state: 'all'})
   .then((res) => {
     var issue = res.items[0].body
     var lastLead = issue.substring(issue.lastIndexOf('All Hands Call')).match(/@[a-zA-Z0-9]*/g)[0]
