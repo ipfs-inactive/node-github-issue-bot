@@ -16,6 +16,6 @@ Sync Between Sprints      | TBD    | TBD | 10:00 **18:00** 19:00 | [agenda and n
 
 Please add any agenda items you have to the pad before the project-specific sprint call starts.
 
-Note that the agenda notes do not automatically have content added to them (see [tracking issue](https://github.com/ipfs/node-github-issue-bot/issues/8)). Either add [this template](https://raw.githubusercontent.com/ipfs/pm/master/templates/agenda-for-all-hands-call.md) or ping @RichardLitt for now.
+Note that the agenda notes do not automatically have content added to them (see [tracking issue](https://github.com/ipfs/node-github-issue-bot/issues/8)). Add [this template](https://raw.githubusercontent.com/ipfs/pm/master/templates/agenda-for-all-hands-call.md).
 
 The sprints for the week are available to view in the [WaffleBoard](http://waffle.io/ipfs/roadmaps) for [ipfs/roadmaps](https://github.com/ipfs/roadmaps).
