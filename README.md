@@ -2,6 +2,8 @@
 
 > Automatically schedule and create GitHub issues
 
+**Deprecated by https://github.com/ipfs/sprint-helper**
+
 ## Install
 
 ```
