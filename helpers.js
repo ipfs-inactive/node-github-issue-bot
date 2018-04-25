@@ -1,14 +1,21 @@
 const moment = require('moment')
 
-function getTitleFormat (start, end) {
-  var startMonth = moment(moment().day(start)).format("MMM")
-  var endMonth = moment(moment().day(end)).format("MMM")
-  if (startMonth === endMonth) {
-    return `${moment(moment().day(start)).format("MMM DD")}-${moment(moment().day(end)).format("DD")}`
-  } else {
-    return `${moment(moment().day(start)).format("MMM DD")}-${moment(moment().day(end)).format("MMM DD")}`
-  }
+/** 
+ * Returns the date for the upcoming dayOfTheWeek in format MMM DD YYYY (e.g., "Apr 09 2018")
+ * 
+ * @param {string} dayOfTheWeek - The day of the week that the issue title should reference (e.g., "Monday")
+ */
+function getTitleFormat (dayOfTheWeek) { 
+
+  // moment().day() sets the day of the week for the current (Sunday - Saturday) week.
+  var mtgDay = moment().day(dayOfTheWeek)
+  
+  // if the mtgDay is in the past, add a week
+  mtgDay = (mtgDay.isBefore(moment({hour: 0}))) ? mtgDay.add(7, 'days') : mtgDay 
+
+  return mtgDay.format("MMM DD YYYY")
 }
+
 
 module.exports = {
   getTitleFormat: getTitleFormat
