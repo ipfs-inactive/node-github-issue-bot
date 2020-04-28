@@ -1,8 +1,8 @@
-# node-github-issue-bot
+# [DEPRECATED] node-github-issue-bot
 
 > Automatically schedule and create GitHub issues
 
-**Deprecated by https://github.com/ipfs/sprint-helper**
+**This repo has been deprecated by https://github.com/ipfs/sprint-helper.**
 
 ## Install
 
